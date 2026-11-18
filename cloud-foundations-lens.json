@@ -9,16 +9,16 @@
       "questions": [
         {
           "id": "fnd01_q01",
-          "title": "How do you structure and govern multiple accounts across teams and environments?",
-          "description": "A well-structured multi-account environment uses accounts as strong isolation boundaries. Evaluate whether your organizational structure, baseline automation, and lifecycle controls match the security and operational needs of your teams and workloads.",
+          "title": "FND01-BP01: Establish management account and organizational structure",
+          "description": "The management account is used only for governance. AWS Organizations OUs are structured around security and operational boundaries, not the org chart. Administrative capabilities are delegated to member accounts wherever the service supports it.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Multi-Account Environment (FND01)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01.html"
+            "displayText": "FND01-BP01: Establish management account and organizational structure",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd01_bp01",
-              "title": "FND01-BP01: Establish management account and organizational structure",
+              "id": "fnd01_q01_a1",
+              "title": "This best practice is fully implemented: Establish management account and organizational structure.",
               "helpfulResource": {
                 "displayText": "The management account is used only for governance. AWS Organizations OUs are structured around security and operational boundaries, not the org chart. Administrative capabilities are delegated to member accounts wherever the service supports it.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp01.html"
@@ -29,8 +29,52 @@
               }
             },
             {
-              "id": "fnd01_bp02",
-              "title": "FND01-BP02: Establish ownership for billing, security, and operations",
+              "id": "fnd01_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Move all production workloads out of the management account.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Move all production workloads out of the management account. Redesign your OU structure to reflect security and lifecycle boundaries rather than reporting lines. Enable delegated administrator for services such as AWS Security Hub, AWS Config, and AWS IAM Identity Center.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp01.html"
+              }
+            },
+            {
+              "id": "fnd01_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish management account and organizational structure has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd01_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd01_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd01_q02",
+          "title": "FND01-BP02: Establish ownership for billing, security, and operations",
+          "description": "Every account and significant resource has a current named owner for billing, security, and operational response recorded as a role or team (not an individual) in account and resource metadata so automation and incident response can rely on it.",
+          "helpfulResource": {
+            "displayText": "FND01-BP02: Establish ownership for billing, security, and operations",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd01_q02_a1",
+              "title": "This best practice is fully implemented: Establish ownership for billing, security, and operations.",
               "helpfulResource": {
                 "displayText": "Every account and significant resource has a current named owner for billing, security, and operational response recorded as a role or team (not an individual) in account and resource metadata so automation and incident response can rely on it.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp02.html"
@@ -41,8 +85,52 @@
               }
             },
             {
-              "id": "fnd01_bp03",
-              "title": "FND01-BP03: Establish boundaries and scopes for your environments",
+              "id": "fnd01_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Update account alternate contacts to distribution lists or role-based aliases.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Update account alternate contacts to distribution lists or role-based aliases. Enforce ownership tags at provisioning time using AWS Organizations tag policies and Service Control Policies.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp02.html"
+              }
+            },
+            {
+              "id": "fnd01_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish ownership for billing, security, and operations has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd01_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd01_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd01_q03",
+          "title": "FND01-BP03: Establish boundaries and scopes for your environments",
+          "description": "Experimentation, pre-production, and production sit in clearly separated environments with progressively tighter access restrictions, expressed as permission sets in IAM Identity Center, so teams can test without endangering production.",
+          "helpfulResource": {
+            "displayText": "FND01-BP03: Establish boundaries and scopes for your environments",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd01_q03_a1",
+              "title": "This best practice is fully implemented: Establish boundaries and scopes for your environments.",
               "helpfulResource": {
                 "displayText": "Experimentation, pre-production, and production sit in clearly separated environments with progressively tighter access restrictions, expressed as permission sets in IAM Identity Center, so teams can test without endangering production.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp03.html"
@@ -53,8 +141,52 @@
               }
             },
             {
-              "id": "fnd01_bp04",
-              "title": "FND01-BP04: Establish a strategy for experimental and temporary environments",
+              "id": "fnd01_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define distinct OUs or account groupings for sandbox, development, staging, and production.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define distinct OUs or account groupings for sandbox, development, staging, and production. Apply progressively restrictive SCPs as workloads move toward production. Validate that controls are consistent across all lifecycle environments.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp03.html"
+              }
+            },
+            {
+              "id": "fnd01_q03_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish boundaries and scopes for your environments has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd01_q03_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd01_q03_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd01_q04",
+          "title": "FND01-BP04: Establish a strategy for experimental and temporary environments",
+          "description": "A first-class path exists for experimentation and short-lived work so teams are not forced to test in shared development accounts or stand up shadow accounts outside governance.",
+          "helpfulResource": {
+            "displayText": "FND01-BP04: Establish a strategy for experimental and temporary environments",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp04.html"
+          },
+          "choices": [
+            {
+              "id": "fnd01_q04_a1",
+              "title": "This best practice is fully implemented: Establish a strategy for experimental and temporary environments.",
               "helpfulResource": {
                 "displayText": "A first-class path exists for experimentation and short-lived work so teams are not forced to test in shared development accounts or stand up shadow accounts outside governance.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp04.html"
@@ -65,20 +197,32 @@
               }
             },
             {
-              "id": "fnd01_no",
+              "id": "fnd01_q04_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Create a sandbox OU with vended accounts, spending limits, and auto-cleanup policies.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp04.html"
+              },
+              "improvementPlan": {
+                "displayText": "Create a sandbox OU with vended accounts, spending limits, and auto-cleanup policies. Provide self-service account vending so teams can provision and decommission experimental environments without bypassing governance.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd01-bp04.html"
+              }
+            },
+            {
+              "id": "fnd01_q04_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the multi-account environment best practices are currently implemented."
+                "displayText": "Select this if Establish a strategy for experimental and temporary environments has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd01_bp01 && fnd01_bp02 && fnd01_bp03 && fnd01_bp04",
+              "condition": "fnd01_q04_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd01_bp01 && fnd01_bp02",
+              "condition": "fnd01_q04_a2",
               "risk": "MEDIUM_RISK"
             },
             {
@@ -95,16 +239,16 @@
       "questions": [
         {
           "id": "fnd02_q01",
-          "title": "How do you manage identities, enforce least privilege, and protect access to accounts and resources?",
-          "description": "Strong identity controls protect your cloud environment while enabling the business to move at speed. Evaluate whether you have centralized identity, protected privileged accounts, enforced least privilege, established data perimeters, and maintained credentials over time.",
+          "title": "FND02-BP01: Protect account root users and establish alternate contacts",
+          "description": "Root users are protected with hardware MFA, monitored for use, and used only by exception. Alternate contacts for every account point to distribution lists rather than individuals.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Identity and Access Management (FND02)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02.html"
+            "displayText": "FND02-BP01: Protect account root users and establish alternate contacts",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd02_bp01",
-              "title": "FND02-BP01: Protect account root users and establish alternate contacts",
+              "id": "fnd02_q01_a1",
+              "title": "This best practice is fully implemented: Protect account root users and establish alternate contacts.",
               "helpfulResource": {
                 "displayText": "Root users are protected with hardware MFA, monitored for use, and used only by exception. Alternate contacts for every account point to distribution lists rather than individuals.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp01.html"
@@ -115,8 +259,52 @@
               }
             },
             {
-              "id": "fnd02_bp02",
-              "title": "FND02-BP02: Use strong sign-in mechanisms",
+              "id": "fnd02_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable hardware MFA on every account root user.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable hardware MFA on every account root user. Set up AWS Organizations policies to alert on root usage. Replace individual alternate contacts with shared distribution lists or role-based aliases.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp01.html"
+              }
+            },
+            {
+              "id": "fnd02_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Protect account root users and establish alternate contacts has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q02",
+          "title": "FND02-BP02: Use strong sign-in mechanisms",
+          "description": "MFA is enforced on all human identities, especially privileged ones. Password policies meet or exceed current standards and are enforced by the identity provider.",
+          "helpfulResource": {
+            "displayText": "FND02-BP02: Use strong sign-in mechanisms",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q02_a1",
+              "title": "This best practice is fully implemented: Use strong sign-in mechanisms.",
               "helpfulResource": {
                 "displayText": "MFA is enforced on all human identities, especially privileged ones. Password policies meet or exceed current standards and are enforced by the identity provider.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp02.html"
@@ -127,8 +315,52 @@
               }
             },
             {
-              "id": "fnd02_bp03",
-              "title": "FND02-BP03: Employ a centralized identity provider",
+              "id": "fnd02_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enforce MFA for all IAM Identity Center users, particularly those with elevated permissions.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enforce MFA for all IAM Identity Center users, particularly those with elevated permissions. Configure the identity provider to require phishing-resistant MFA factors (e.g., FIDO2) for privileged roles.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp02.html"
+              }
+            },
+            {
+              "id": "fnd02_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Use strong sign-in mechanisms has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q03",
+          "title": "FND02-BP03: Employ a centralized identity provider",
+          "description": "Workforce identity is centralized and AWS access flows by federation from a single authoritative source that synchronises joiner, mover, and leaver changes automatically.",
+          "helpfulResource": {
+            "displayText": "FND02-BP03: Employ a centralized identity provider",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q03_a1",
+              "title": "This best practice is fully implemented: Employ a centralized identity provider.",
               "helpfulResource": {
                 "displayText": "Workforce identity is centralized and AWS access flows by federation from a single authoritative source that synchronises joiner, mover, and leaver changes automatically.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp03.html"
@@ -139,8 +371,52 @@
               }
             },
             {
-              "id": "fnd02_bp04",
-              "title": "FND02-BP04: Establish controls to manage access based on lifecycle",
+              "id": "fnd02_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Integrate AWS IAM Identity Center with your corporate identity provider (e.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Integrate AWS IAM Identity Center with your corporate identity provider (e.g., Entra ID, Okta). Eliminate direct IAM user accounts used for human access. Automate provisioning and deprovisioning via SCIM.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp03.html"
+              }
+            },
+            {
+              "id": "fnd02_q03_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Employ a centralized identity provider has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q03_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q03_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q04",
+          "title": "FND02-BP04: Establish controls to manage access based on lifecycle",
+          "description": "Joiner, mover, and leaver processes automatically adjust or revoke access, so permissions stay aligned with current role and employment status without manual intervention.",
+          "helpfulResource": {
+            "displayText": "FND02-BP04: Establish controls to manage access based on lifecycle",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp04.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q04_a1",
+              "title": "This best practice is fully implemented: Establish controls to manage access based on lifecycle.",
               "helpfulResource": {
                 "displayText": "Joiner, mover, and leaver processes automatically adjust or revoke access, so permissions stay aligned with current role and employment status without manual intervention.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp04.html"
@@ -151,8 +427,52 @@
               }
             },
             {
-              "id": "fnd02_bp05",
-              "title": "FND02-BP05: Grant least privilege access",
+              "id": "fnd02_q04_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Automate access revocation on offboarding via SCIM or HR system integration.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp04.html"
+              },
+              "improvementPlan": {
+                "displayText": "Automate access revocation on offboarding via SCIM or HR system integration. Implement access reviews triggered by role changes. Audit accounts and permission sets for orphaned access on a regular cadence.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp04.html"
+              }
+            },
+            {
+              "id": "fnd02_q04_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish controls to manage access based on lifecycle has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q04_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q04_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q05",
+          "title": "FND02-BP05: Grant least privilege access",
+          "description": "Permissions default to least privilege and are refined continuously based on access that is actually used. IAM Access Analyzer and service control policies contribute to enforcement.",
+          "helpfulResource": {
+            "displayText": "FND02-BP05: Grant least privilege access",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp05.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q05_a1",
+              "title": "This best practice is fully implemented: Grant least privilege access.",
               "helpfulResource": {
                 "displayText": "Permissions default to least privilege and are refined continuously based on access that is actually used. IAM Access Analyzer and service control policies contribute to enforcement.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp05.html"
@@ -163,8 +483,52 @@
               }
             },
             {
-              "id": "fnd02_bp06",
-              "title": "FND02-BP06: Define permission guardrails for your organization",
+              "id": "fnd02_q05_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Use IAM Access Analyzer to identify over-permissive policies.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp05.html"
+              },
+              "improvementPlan": {
+                "displayText": "Use IAM Access Analyzer to identify over-permissive policies. Enable permission boundaries for delegated role creation. Review policies using last-accessed data and trim permissions that have not been used within your defined window.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp05.html"
+              }
+            },
+            {
+              "id": "fnd02_q05_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Grant least privilege access has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q05_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q05_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q06",
+          "title": "FND02-BP06: Define permission guardrails for your organization",
+          "description": "Organization-wide SCPs and resource control policies act independently of individual permission grants, keeping controls consistent and preventing high-risk actions across all accounts.",
+          "helpfulResource": {
+            "displayText": "FND02-BP06: Define permission guardrails for your organization",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp06.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q06_a1",
+              "title": "This best practice is fully implemented: Define permission guardrails for your organization.",
               "helpfulResource": {
                 "displayText": "Organization-wide SCPs and resource control policies act independently of individual permission grants, keeping controls consistent and preventing high-risk actions across all accounts.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp06.html"
@@ -175,8 +539,52 @@
               }
             },
             {
-              "id": "fnd02_bp07",
-              "title": "FND02-BP07: Implement data perimeter controls to prevent unintended access",
+              "id": "fnd02_q06_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define a baseline set of deny-list SCPs (e.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp06.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define a baseline set of deny-list SCPs (e.g., restrict to approved Regions, prevent disabling security services, block root user API calls). Apply them at the root or appropriate OU level. Ensure security and audit accounts have equal or stricter guardrails.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp06.html"
+              }
+            },
+            {
+              "id": "fnd02_q06_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Define permission guardrails for your organization has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q06_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q06_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q07",
+          "title": "FND02-BP07: Implement data perimeter controls to prevent unintended access",
+          "description": "Resource-based policies and VPC endpoint policies ensure only trusted identities, resources, and networks within your organization can access sensitive data, regardless of individual permission grants.",
+          "helpfulResource": {
+            "displayText": "FND02-BP07: Implement data perimeter controls to prevent unintended access",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp07.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q07_a1",
+              "title": "This best practice is fully implemented: Implement data perimeter controls to prevent unintended access.",
               "helpfulResource": {
                 "displayText": "Resource-based policies and VPC endpoint policies ensure only trusted identities, resources, and networks within your organization can access sensitive data, regardless of individual permission grants.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp07.html"
@@ -187,8 +595,52 @@
               }
             },
             {
-              "id": "fnd02_bp08",
-              "title": "FND02-BP08: Audit and rotate credentials periodically",
+              "id": "fnd02_q07_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Implement S3 bucket policies and AWS Organizations condition keys (aws:PrincipalOrgID, aws:ResourceOrgID) to establish data perimeters.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp07.html"
+              },
+              "improvementPlan": {
+                "displayText": "Implement S3 bucket policies and AWS Organizations condition keys (aws:PrincipalOrgID, aws:ResourceOrgID) to establish data perimeters. Use VPC endpoint policies to restrict S3 and other service access to organization-owned identities.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp07.html"
+              }
+            },
+            {
+              "id": "fnd02_q07_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Implement data perimeter controls to prevent unintended access has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q07_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q07_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q08",
+          "title": "FND02-BP08: Audit and rotate credentials periodically",
+          "description": "Long-lived credentials are inventoried, owned, and rotated on a known schedule. The number of long-lived credentials is minimized and each one has a documented owner.",
+          "helpfulResource": {
+            "displayText": "FND02-BP08: Audit and rotate credentials periodically",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp08.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q08_a1",
+              "title": "This best practice is fully implemented: Audit and rotate credentials periodically.",
               "helpfulResource": {
                 "displayText": "Long-lived credentials are inventoried, owned, and rotated on a known schedule. The number of long-lived credentials is minimized and each one has a documented owner.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp08.html"
@@ -199,8 +651,52 @@
               }
             },
             {
-              "id": "fnd02_bp09",
-              "title": "FND02-BP09: Establish a process to continually review and refine permissions",
+              "id": "fnd02_q08_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Use AWS Config rules to detect IAM access keys older than your rotation threshold.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp08.html"
+              },
+              "improvementPlan": {
+                "displayText": "Use AWS Config rules to detect IAM access keys older than your rotation threshold. Automate rotation for service account keys using AWS Secrets Manager. Report on and remediate keys without documented owners.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp08.html"
+              }
+            },
+            {
+              "id": "fnd02_q08_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Audit and rotate credentials periodically has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q08_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q08_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q09",
+          "title": "FND02-BP09: Establish a process to continually review and refine permissions",
+          "description": "Permission reviews happen on a defined cadence and produce actual reductions. Reviews are triggered by changes in role and are supported by last-accessed data rather than producing activity without outcome.",
+          "helpfulResource": {
+            "displayText": "FND02-BP09: Establish a process to continually review and refine permissions",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp09.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q09_a1",
+              "title": "This best practice is fully implemented: Establish a process to continually review and refine permissions.",
               "helpfulResource": {
                 "displayText": "Permission reviews happen on a defined cadence and produce actual reductions. Reviews are triggered by changes in role and are supported by last-accessed data rather than producing activity without outcome.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp09.html"
@@ -211,8 +707,52 @@
               }
             },
             {
-              "id": "fnd02_bp10",
-              "title": "FND02-BP10: Establish workload and machine identity federation",
+              "id": "fnd02_q09_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Establish a quarterly permission review cadence using IAM Access Analyzer and IAM last-accessed reports.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp09.html"
+              },
+              "improvementPlan": {
+                "displayText": "Establish a quarterly permission review cadence using IAM Access Analyzer and IAM last-accessed reports. Set a target to reduce average policy size each review cycle. Track and trend the number of overly permissive policies as a metric.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp09.html"
+              }
+            },
+            {
+              "id": "fnd02_q09_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish a process to continually review and refine permissions has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd02_q09_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd02_q09_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd02_q10",
+          "title": "FND02-BP10: Establish workload and machine identity federation",
+          "description": "Workloads and machines obtain short-lived credentials through IAM Roles or OIDC-based federation. Long-lived credentials for machine use are eliminated wherever federation is available.",
+          "helpfulResource": {
+            "displayText": "FND02-BP10: Establish workload and machine identity federation",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp10.html"
+          },
+          "choices": [
+            {
+              "id": "fnd02_q10_a1",
+              "title": "This best practice is fully implemented: Establish workload and machine identity federation.",
               "helpfulResource": {
                 "displayText": "Workloads and machines obtain short-lived credentials through IAM Roles or OIDC-based federation. Long-lived credentials for machine use are eliminated wherever federation is available.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp10.html"
@@ -223,20 +763,32 @@
               }
             },
             {
-              "id": "fnd02_no",
+              "id": "fnd02_q10_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Replace static IAM access keys in CI/CD pipelines with OIDC federation.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp10.html"
+              },
+              "improvementPlan": {
+                "displayText": "Replace static IAM access keys in CI/CD pipelines with OIDC federation. Assign IAM roles to EC2 instances, Lambda functions, ECS tasks, and EKS pods. Inventory any remaining long-lived machine credentials and create migration plans for each.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd02-bp10.html"
+              }
+            },
+            {
+              "id": "fnd02_q10_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the identity and access management best practices are currently implemented."
+                "displayText": "Select this if Establish workload and machine identity federation has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd02_bp01 && fnd02_bp02 && fnd02_bp03 && fnd02_bp05 && fnd02_bp06",
+              "condition": "fnd02_q10_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd02_bp01 && fnd02_bp03 && fnd02_bp05",
+              "condition": "fnd02_q10_a2",
               "risk": "MEDIUM_RISK"
             },
             {
@@ -253,16 +805,16 @@
       "questions": [
         {
           "id": "fnd03_q01",
-          "title": "How do you establish consistent, centralized observability into your cloud resources across all accounts and Regions?",
-          "description": "Observability gives teams a shared, reliable view of how the cloud environment is behaving. Evaluate whether you have defined organization-wide standards and aggregated telemetry centrally across all accounts and Regions.",
+          "title": "FND03-BP01: Define observability standards and policies",
+          "description": "Observability is a foundation capability with clear ownership, documented standards for log formats, metric namespaces, and trace sampling rates, and named accountability for telemetry quality across the organization.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Central Observability Management (FND03)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03.html"
+            "displayText": "FND03-BP01: Define observability standards and policies",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd03_bp01",
-              "title": "FND03-BP01: Define observability standards and policies",
+              "id": "fnd03_q01_a1",
+              "title": "This best practice is fully implemented: Define observability standards and policies.",
               "helpfulResource": {
                 "displayText": "Observability is a foundation capability with clear ownership, documented standards for log formats, metric namespaces, and trace sampling rates, and named accountability for telemetry quality across the organization.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp01.html"
@@ -273,8 +825,52 @@
               }
             },
             {
-              "id": "fnd03_bp02",
-              "title": "FND03-BP02: Establish central, cross-account observability capabilities",
+              "id": "fnd03_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define and publish organization-wide observability standards covering log format, retention, sampling rates, and metric naming conventions.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define and publish organization-wide observability standards covering log format, retention, sampling rates, and metric naming conventions. Assign an owner accountable for telemetry quality. Enforce standards via IaC modules distributed through the service catalog.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp01.html"
+              }
+            },
+            {
+              "id": "fnd03_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Define observability standards and policies has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd03_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd03_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd03_q02",
+          "title": "FND03-BP02: Establish central, cross-account observability capabilities",
+          "description": "Telemetry from every account is available through a shared cross-account view using Amazon CloudWatch cross-account observability or a third-party aggregation platform. Foundation, workload, and security teams operate from this shared view.",
+          "helpfulResource": {
+            "displayText": "FND03-BP02: Establish central, cross-account observability capabilities",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd03_q02_a1",
+              "title": "This best practice is fully implemented: Establish central, cross-account observability capabilities.",
               "helpfulResource": {
                 "displayText": "Telemetry from every account is available through a shared cross-account view using Amazon CloudWatch cross-account observability or a third-party aggregation platform. Foundation, workload, and security teams operate from this shared view.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp02.html"
@@ -285,8 +881,52 @@
               }
             },
             {
-              "id": "fnd03_bp03",
-              "title": "FND03-BP03: Establish centralized event monitoring and response",
+              "id": "fnd03_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable CloudWatch cross-account observability or deploy a centralized observability account.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable CloudWatch cross-account observability or deploy a centralized observability account. Ensure new accounts are automatically enrolled via account provisioning automation. Instrument foundation components (networking, identity, shared security services) to the same standard as workloads.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp02.html"
+              }
+            },
+            {
+              "id": "fnd03_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish central, cross-account observability capabilities has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd03_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd03_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd03_q03",
+          "title": "FND03-BP03: Establish centralized event monitoring and response",
+          "description": "AWS Health events from every account are aggregated into a single organization-wide view and routed through automation so service issues and scheduled changes reach the teams that own the affected resources.",
+          "helpfulResource": {
+            "displayText": "FND03-BP03: Establish centralized event monitoring and response",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd03_q03_a1",
+              "title": "This best practice is fully implemented: Establish centralized event monitoring and response.",
               "helpfulResource": {
                 "displayText": "AWS Health events from every account are aggregated into a single organization-wide view and routed through automation so service issues and scheduled changes reach the teams that own the affected resources.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp03.html"
@@ -297,20 +937,32 @@
               }
             },
             {
-              "id": "fnd03_no",
+              "id": "fnd03_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable AWS Health Organizational View in the management account.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable AWS Health Organizational View in the management account. Configure Amazon EventBridge rules to forward all Health events to a central event bus and route them to the owning team via tags. Establish SLAs for responding to critical Health notifications.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd03-bp03.html"
+              }
+            },
+            {
+              "id": "fnd03_q03_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the central observability management best practices are currently implemented."
+                "displayText": "Select this if Establish centralized event monitoring and response has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd03_bp01 && fnd03_bp02 && fnd03_bp03",
+              "condition": "fnd03_q03_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd03_bp02 && fnd03_bp03",
+              "condition": "fnd03_q03_a2",
               "risk": "MEDIUM_RISK"
             },
             {
@@ -327,16 +979,16 @@
       "questions": [
         {
           "id": "fnd04_q01",
-          "title": "How do you maintain visibility, control, and governance over resources, configurations, and assets across accounts and Regions?",
-          "description": "Clear visibility and control over cloud resources is essential at scale. Evaluate whether you maintain authoritative inventory, enforce consistent tagging, provide curated shared patterns, manage patching and quotas centrally, and validate recovery through regular exercises.",
+          "title": "FND04-BP01: Implement standardized attribution policies",
+          "description": "Tagging is enforced at provisioning time, not applied by convention after the fact. Required tags are defined organization-wide and validated by tag policies and AWS Config rules.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Resource and Inventory Management (FND04)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04.html"
+            "displayText": "FND04-BP01: Implement standardized attribution policies",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd04_bp01",
-              "title": "FND04-BP01: Implement standardized attribution policies",
+              "id": "fnd04_q01_a1",
+              "title": "This best practice is fully implemented: Implement standardized attribution policies.",
               "helpfulResource": {
                 "displayText": "Tagging is enforced at provisioning time, not applied by convention after the fact. Required tags are defined organization-wide and validated by tag policies and AWS Config rules.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp01.html"
@@ -347,8 +999,52 @@
               }
             },
             {
-              "id": "fnd04_bp02",
-              "title": "FND04-BP02: Establish an organization view of cloud inventory and dependencies",
+              "id": "fnd04_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define a mandatory tag schema (owner, environment, cost-center, application) and enforce it using AWS Organizations tag policies and Service Control Policies.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define a mandatory tag schema (owner, environment, cost-center, application) and enforce it using AWS Organizations tag policies and Service Control Policies. Remediate existing untagged resources and report compliance as an ongoing metric.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp01.html"
+              }
+            },
+            {
+              "id": "fnd04_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Implement standardized attribution policies has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q02",
+          "title": "FND04-BP02: Establish an organization view of cloud inventory and dependencies",
+          "description": "The organization has a continuously maintained authoritative view of what exists, who owns it, and how resources depend on each other, without relying on manual collection or point-in-time snapshots.",
+          "helpfulResource": {
+            "displayText": "FND04-BP02: Establish an organization view of cloud inventory and dependencies",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q02_a1",
+              "title": "This best practice is fully implemented: Establish an organization view of cloud inventory and dependencies.",
               "helpfulResource": {
                 "displayText": "The organization has a continuously maintained authoritative view of what exists, who owns it, and how resources depend on each other, without relying on manual collection or point-in-time snapshots.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp02.html"
@@ -359,8 +1055,52 @@
               }
             },
             {
-              "id": "fnd04_bp03",
-              "title": "FND04-BP03: Establish standard repositories of shared resources and patterns",
+              "id": "fnd04_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable AWS Config aggregation across all accounts and Regions.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable AWS Config aggregation across all accounts and Regions. Use AWS Systems Manager Inventory and AWS Service Catalog AppRegistry to map applications to resources. Build dashboards from the aggregated data to surface ownership and dependency information.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp02.html"
+              }
+            },
+            {
+              "id": "fnd04_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish an organization view of cloud inventory and dependencies has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q03",
+          "title": "FND04-BP03: Establish standard repositories of shared resources and patterns",
+          "description": "Common infrastructure is consumed from curated, versioned, security-vetted building blocks rather than rebuilt by each team, so the secure and compliant path is also the easiest path.",
+          "helpfulResource": {
+            "displayText": "FND04-BP03: Establish standard repositories of shared resources and patterns",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q03_a1",
+              "title": "This best practice is fully implemented: Establish standard repositories of shared resources and patterns.",
               "helpfulResource": {
                 "displayText": "Common infrastructure is consumed from curated, versioned, security-vetted building blocks rather than rebuilt by each team, so the secure and compliant path is also the easiest path.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp03.html"
@@ -371,8 +1111,52 @@
               }
             },
             {
-              "id": "fnd04_bp04",
-              "title": "FND04-BP04: Implement mechanisms for patch management",
+              "id": "fnd04_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Publish approved IaC modules (Terraform, CloudFormation, CDK) to a central registry.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Publish approved IaC modules (Terraform, CloudFormation, CDK) to a central registry. Maintain an AWS Service Catalog with approved products. Keep modules discoverable, well-documented, and regularly updated to prevent teams from building alternatives.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp03.html"
+              }
+            },
+            {
+              "id": "fnd04_q03_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish standard repositories of shared resources and patterns has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q03_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q03_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q04",
+          "title": "FND04-BP04: Implement mechanisms for patch management",
+          "description": "Patch management covers EC2, container images, AMIs, hybrid nodes, and serverless runtimes with both scheduled maintenance and an expedited path for zero-day vulnerabilities.",
+          "helpfulResource": {
+            "displayText": "FND04-BP04: Implement mechanisms for patch management",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp04.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q04_a1",
+              "title": "This best practice is fully implemented: Implement mechanisms for patch management.",
               "helpfulResource": {
                 "displayText": "Patch management covers EC2, container images, AMIs, hybrid nodes, and serverless runtimes with both scheduled maintenance and an expedited path for zero-day vulnerabilities.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp04.html"
@@ -383,8 +1167,52 @@
               }
             },
             {
-              "id": "fnd04_bp05",
-              "title": "FND04-BP05: Establish service quota management",
+              "id": "fnd04_q04_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Use AWS Systems Manager Patch Manager to enforce patch baselines across all EC2 and hybrid instances.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp04.html"
+              },
+              "improvementPlan": {
+                "displayText": "Use AWS Systems Manager Patch Manager to enforce patch baselines across all EC2 and hybrid instances. Add container image scanning to CI/CD pipelines. Define and test an expedited patching runbook for critical CVEs with an SLA shorter than your normal window.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp04.html"
+              }
+            },
+            {
+              "id": "fnd04_q04_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Implement mechanisms for patch management has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q04_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q04_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q05",
+          "title": "FND04-BP05: Establish service quota management",
+          "description": "Service quotas are monitored organization-wide with proactive alerts, and DR Regions are sized for failover load rather than resting load, so workloads can scale when needed.",
+          "helpfulResource": {
+            "displayText": "FND04-BP05: Establish service quota management",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp05.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q05_a1",
+              "title": "This best practice is fully implemented: Establish service quota management.",
               "helpfulResource": {
                 "displayText": "Service quotas are monitored organization-wide with proactive alerts, and DR Regions are sized for failover load rather than resting load, so workloads can scale when needed.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp05.html"
@@ -395,8 +1223,52 @@
               }
             },
             {
-              "id": "fnd04_bp06",
-              "title": "FND04-BP06: Establish centralized backup standards and mechanisms",
+              "id": "fnd04_q05_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable AWS Service Quotas with CloudWatch alarms at 70-80% utilization thresholds.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp05.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable AWS Service Quotas with CloudWatch alarms at 70-80% utilization thresholds. Pre-request quota increases in DR Regions based on failover capacity requirements. Review quota headroom as part of the account provisioning and workload onboarding process.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp05.html"
+              }
+            },
+            {
+              "id": "fnd04_q05_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish service quota management has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q05_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q05_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q06",
+          "title": "FND04-BP06: Establish centralized backup standards and mechanisms",
+          "description": "Backups are managed centrally via AWS Backup, stored in isolated vaults with vault lock enabled, and held in a separate account from the data they protect so account-level compromise does not remove the recovery path.",
+          "helpfulResource": {
+            "displayText": "FND04-BP06: Establish centralized backup standards and mechanisms",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp06.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q06_a1",
+              "title": "This best practice is fully implemented: Establish centralized backup standards and mechanisms.",
               "helpfulResource": {
                 "displayText": "Backups are managed centrally via AWS Backup, stored in isolated vaults with vault lock enabled, and held in a separate account from the data they protect so account-level compromise does not remove the recovery path.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp06.html"
@@ -407,8 +1279,52 @@
               }
             },
             {
-              "id": "fnd04_bp07",
-              "title": "FND04-BP07: Establish cross-Region replication and failover capabilities",
+              "id": "fnd04_q06_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define an organization-wide backup policy using AWS Backup and deploy it via AWS Organizations.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp06.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define an organization-wide backup policy using AWS Backup and deploy it via AWS Organizations. Enable backup vault lock with WORM settings. Store backup vaults in a dedicated backup account. Run restore exercises on a regular schedule and record results.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp06.html"
+              }
+            },
+            {
+              "id": "fnd04_q06_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish centralized backup standards and mechanisms has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q06_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q06_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q07",
+          "title": "FND04-BP07: Establish cross-Region replication and failover capabilities",
+          "description": "Cross-Region resilience and shared services exist in multiple Regions with documented and tested failover procedures, rather than being asserted on paper and exercised only during a real incident.",
+          "helpfulResource": {
+            "displayText": "FND04-BP07: Establish cross-Region replication and failover capabilities",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp07.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q07_a1",
+              "title": "This best practice is fully implemented: Establish cross-Region replication and failover capabilities.",
               "helpfulResource": {
                 "displayText": "Cross-Region resilience and shared services exist in multiple Regions with documented and tested failover procedures, rather than being asserted on paper and exercised only during a real incident.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp07.html"
@@ -419,8 +1335,52 @@
               }
             },
             {
-              "id": "fnd04_bp08",
-              "title": "FND04-BP08: Establish resilience testing tooling",
+              "id": "fnd04_q07_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Identify all shared foundation services (DNS, Active Directory, logging, identity) and ensure they have multi-Region deployments.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp07.html"
+              },
+              "improvementPlan": {
+                "displayText": "Identify all shared foundation services (DNS, Active Directory, logging, identity) and ensure they have multi-Region deployments. Document failover runbooks. Conduct scheduled failover drills and capture RTO/RPO metrics against your targets.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp07.html"
+              }
+            },
+            {
+              "id": "fnd04_q07_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish cross-Region replication and failover capabilities has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd04_q07_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd04_q07_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd04_q08",
+          "title": "FND04-BP08: Establish resilience testing tooling",
+          "description": "Recovery and resilience claims are validated by exercise rather than assertion, with restores, failovers, and fault-injection experiments run on a regular cadence and findings fed back into the shared patterns.",
+          "helpfulResource": {
+            "displayText": "FND04-BP08: Establish resilience testing tooling",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp08.html"
+          },
+          "choices": [
+            {
+              "id": "fnd04_q08_a1",
+              "title": "This best practice is fully implemented: Establish resilience testing tooling.",
               "helpfulResource": {
                 "displayText": "Recovery and resilience claims are validated by exercise rather than assertion, with restores, failovers, and fault-injection experiments run on a regular cadence and findings fed back into the shared patterns.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp08.html"
@@ -431,20 +1391,32 @@
               }
             },
             {
-              "id": "fnd04_no",
+              "id": "fnd04_q08_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Use AWS Fault Injection Service (FIS) to run scheduled chaos experiments on shared foundation services.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp08.html"
+              },
+              "improvementPlan": {
+                "displayText": "Use AWS Fault Injection Service (FIS) to run scheduled chaos experiments on shared foundation services. Track experiment results and use them to update IaC modules and runbooks. Establish a game day cadence for multi-Region failover scenarios.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd04-bp08.html"
+              }
+            },
+            {
+              "id": "fnd04_q08_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the resource and inventory management best practices are currently implemented."
+                "displayText": "Select this if Establish resilience testing tooling has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd04_bp01 && fnd04_bp02 && fnd04_bp03 && fnd04_bp04 && fnd04_bp06",
+              "condition": "fnd04_q08_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd04_bp01 && fnd04_bp02 && fnd04_bp04",
+              "condition": "fnd04_q08_a2",
               "risk": "MEDIUM_RISK"
             },
             {
@@ -461,16 +1433,16 @@
       "questions": [
         {
           "id": "fnd05_q01",
-          "title": "How do you detect, respond to, and remediate security threats and compliance violations?",
-          "description": "A strong security posture combines preventive, proactive, detective, and reactive controls. Evaluate whether your foundation provides emergency access, standardized telemetry, threat detection, vulnerability management, dedicated security tooling, forensic readiness, and centralized encryption and key management.",
+          "title": "FND05-BP01: Shift compliance checks left with proactive controls",
+          "description": "Compliance rules are codified and enforced in pipelines, at provisioning time, and in provisioning services so non-compliant resources are blocked before they exist wherever practical.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Security and Compliance (FND05)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05.html"
+            "displayText": "FND05-BP01: Shift compliance checks left with proactive controls",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd05_bp01",
-              "title": "FND05-BP01: Shift compliance checks left with proactive controls",
+              "id": "fnd05_q01_a1",
+              "title": "This best practice is fully implemented: Shift compliance checks left with proactive controls.",
               "helpfulResource": {
                 "displayText": "Compliance rules are codified and enforced in pipelines, at provisioning time, and in provisioning services so non-compliant resources are blocked before they exist wherever practical.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp01.html"
@@ -481,8 +1453,52 @@
               }
             },
             {
-              "id": "fnd05_bp02",
-              "title": "FND05-BP02: Establish emergency access mechanisms",
+              "id": "fnd05_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Integrate CloudFormation Guard, cfn-nag, or OPA policy checks into your CI/CD pipelines.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Integrate CloudFormation Guard, cfn-nag, or OPA policy checks into your CI/CD pipelines. Use AWS CloudFormation hooks or Service Control Policies to block non-compliant resource creation at provisioning time. Measure the ratio of detective-to-preventive findings and trend it toward prevention.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp01.html"
+              }
+            },
+            {
+              "id": "fnd05_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Shift compliance checks left with proactive controls has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q02",
+          "title": "FND05-BP02: Establish emergency access mechanisms",
+          "description": "Emergency access works independently of the primary identity path, is tightly monitored for misuse, and is exercised regularly enough to be trusted during a real failure.",
+          "helpfulResource": {
+            "displayText": "FND05-BP02: Establish emergency access mechanisms",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q02_a1",
+              "title": "This best practice is fully implemented: Establish emergency access mechanisms.",
               "helpfulResource": {
                 "displayText": "Emergency access works independently of the primary identity path, is tightly monitored for misuse, and is exercised regularly enough to be trusted during a real failure.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp02.html"
@@ -493,8 +1509,52 @@
               }
             },
             {
-              "id": "fnd05_bp03",
-              "title": "FND05-BP03: Configure audit logging of cloud operations",
+              "id": "fnd05_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Implement a break-glass process using root or dedicated IAM accounts stored in a separate secure vault, independent of your primary identity provider.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Implement a break-glass process using root or dedicated IAM accounts stored in a separate secure vault, independent of your primary identity provider. Set up CloudWatch alarms and SNS notifications for any break-glass usage. Test the process quarterly.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp02.html"
+              }
+            },
+            {
+              "id": "fnd05_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish emergency access mechanisms has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q03",
+          "title": "FND05-BP03: Configure audit logging of cloud operations",
+          "description": "AWS CloudTrail is enabled organization-wide with a trail that captures management and data events and writes to a central, protected S3 bucket in a dedicated log archive account.",
+          "helpfulResource": {
+            "displayText": "FND05-BP03: Configure audit logging of cloud operations",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q03_a1",
+              "title": "This best practice is fully implemented: Configure audit logging of cloud operations.",
               "helpfulResource": {
                 "displayText": "AWS CloudTrail is enabled organization-wide with a trail that captures management and data events and writes to a central, protected S3 bucket in a dedicated log archive account.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp03.html"
@@ -505,8 +1565,52 @@
               }
             },
             {
-              "id": "fnd05_bp04",
-              "title": "FND05-BP04: Configure standardized locations for logs, traces, and metrics",
+              "id": "fnd05_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable an organization-wide CloudTrail trail that writes to a log archive account with S3 Object Lock.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable an organization-wide CloudTrail trail that writes to a log archive account with S3 Object Lock. Enable CloudTrail Insights for unusual API activity detection. Ensure the log archive account is accessible to security teams but locked from modification by workload accounts.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp03.html"
+              }
+            },
+            {
+              "id": "fnd05_q03_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Configure audit logging of cloud operations has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q03_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q03_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q04",
+          "title": "FND05-BP04: Configure standardized locations for logs, traces, and metrics",
+          "description": "Audit logs, traces, metrics, and resource inventory are captured in standardized, centrally owned, immutable locations that support correlation, investigation, compliance evidence, and point-in-time reconstruction.",
+          "helpfulResource": {
+            "displayText": "FND05-BP04: Configure standardized locations for logs, traces, and metrics",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp04.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q04_a1",
+              "title": "This best practice is fully implemented: Configure standardized locations for logs, traces, and metrics.",
               "helpfulResource": {
                 "displayText": "Audit logs, traces, metrics, and resource inventory are captured in standardized, centrally owned, immutable locations that support correlation, investigation, compliance evidence, and point-in-time reconstruction.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp04.html"
@@ -517,8 +1621,52 @@
               }
             },
             {
-              "id": "fnd05_bp05",
-              "title": "FND05-BP05: Maintain an auditable cloud inventory record",
+              "id": "fnd05_q04_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define and enforce standard log destinations (e.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp04.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define and enforce standard log destinations (e.g., central S3 bucket, Security Lake) and retention policies organization-wide. Use VPC Flow Logs, DNS query logs, and CloudWatch Logs with cross-account subscription filters to route telemetry to central storage.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp04.html"
+              }
+            },
+            {
+              "id": "fnd05_q04_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Configure standardized locations for logs, traces, and metrics has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q04_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q04_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q05",
+          "title": "FND05-BP05: Maintain an auditable cloud inventory record",
+          "description": "An up-to-date, queryable cloud inventory supports compliance evidence, security investigations, and change management without manual collection.",
+          "helpfulResource": {
+            "displayText": "FND05-BP05: Maintain an auditable cloud inventory record",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp05.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q05_a1",
+              "title": "This best practice is fully implemented: Maintain an auditable cloud inventory record.",
               "helpfulResource": {
                 "displayText": "An up-to-date, queryable cloud inventory supports compliance evidence, security investigations, and change management without manual collection.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp05.html"
@@ -529,8 +1677,52 @@
               }
             },
             {
-              "id": "fnd05_bp06",
-              "title": "FND05-BP06: Remediate non-compliant resources",
+              "id": "fnd05_q05_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Use AWS Config aggregation to maintain a continuously updated inventory across all accounts and Regions.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp05.html"
+              },
+              "improvementPlan": {
+                "displayText": "Use AWS Config aggregation to maintain a continuously updated inventory across all accounts and Regions. Store configuration snapshots in a central S3 bucket. Build queries using AWS Config Advanced Queries or Amazon Athena to support compliance reporting.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp05.html"
+              }
+            },
+            {
+              "id": "fnd05_q05_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Maintain an auditable cloud inventory record has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q05_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q05_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q06",
+          "title": "FND05-BP06: Remediate non-compliant resources",
+          "description": "Non-compliant resources have owned, prioritized response workflows with defined SLAs rather than sitting as unactioned findings in a backlog.",
+          "helpfulResource": {
+            "displayText": "FND05-BP06: Remediate non-compliant resources",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp06.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q06_a1",
+              "title": "This best practice is fully implemented: Remediate non-compliant resources.",
               "helpfulResource": {
                 "displayText": "Non-compliant resources have owned, prioritized response workflows with defined SLAs rather than sitting as unactioned findings in a backlog.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp06.html"
@@ -541,8 +1733,52 @@
               }
             },
             {
-              "id": "fnd05_bp07",
-              "title": "FND05-BP07: Implement threat detection mechanisms",
+              "id": "fnd05_q06_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Configure AWS Config auto-remediation rules for common violations.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp06.html"
+              },
+              "improvementPlan": {
+                "displayText": "Configure AWS Config auto-remediation rules for common violations. Route findings from AWS Security Hub to ticketing systems with severity-based SLAs. Report on mean time to remediation by finding type and severity as an operational metric.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp06.html"
+              }
+            },
+            {
+              "id": "fnd05_q06_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Remediate non-compliant resources has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q06_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q06_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q07",
+          "title": "FND05-BP07: Implement threat detection mechanisms",
+          "description": "Continuous threat detection runs at organization scale across all accounts and Regions, with findings flowing into owned, prioritized response workflows rather than sitting unattended.",
+          "helpfulResource": {
+            "displayText": "FND05-BP07: Implement threat detection mechanisms",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp07.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q07_a1",
+              "title": "This best practice is fully implemented: Implement threat detection mechanisms.",
               "helpfulResource": {
                 "displayText": "Continuous threat detection runs at organization scale across all accounts and Regions, with findings flowing into owned, prioritized response workflows rather than sitting unattended.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp07.html"
@@ -553,8 +1789,52 @@
               }
             },
             {
-              "id": "fnd05_bp08",
-              "title": "FND05-BP08: Employ vulnerability and patch management controls",
+              "id": "fnd05_q07_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable Amazon GuardDuty organization-wide with a delegated administrator account.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp07.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable Amazon GuardDuty organization-wide with a delegated administrator account. Configure GuardDuty findings to flow into Security Hub and then to your SIEM or ticketing system with named owners and response SLAs for each severity tier.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp07.html"
+              }
+            },
+            {
+              "id": "fnd05_q07_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Implement threat detection mechanisms has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q07_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q07_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q08",
+          "title": "FND05-BP08: Employ vulnerability and patch management controls",
+          "description": "Continuous vulnerability scanning covers all compute types (EC2, containers, Lambda) and findings are linked to remediation workflows with defined SLAs, including an expedited path for critical CVEs.",
+          "helpfulResource": {
+            "displayText": "FND05-BP08: Employ vulnerability and patch management controls",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp08.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q08_a1",
+              "title": "This best practice is fully implemented: Employ vulnerability and patch management controls.",
               "helpfulResource": {
                 "displayText": "Continuous vulnerability scanning covers all compute types (EC2, containers, Lambda) and findings are linked to remediation workflows with defined SLAs, including an expedited path for critical CVEs.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp08.html"
@@ -565,8 +1845,52 @@
               }
             },
             {
-              "id": "fnd05_bp09",
-              "title": "FND05-BP09: Establish security tooling for investigating incidents",
+              "id": "fnd05_q08_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable Amazon Inspector organization-wide for EC2, ECR container images, and Lambda.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp08.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable Amazon Inspector organization-wide for EC2, ECR container images, and Lambda. Route critical and high findings to owners with an SLA of 7 days or less. Integrate Inspector findings into Security Hub for unified visibility.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp08.html"
+              }
+            },
+            {
+              "id": "fnd05_q08_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Employ vulnerability and patch management controls has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q08_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q08_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q09",
+          "title": "FND05-BP09: Establish security tooling for investigating incidents",
+          "description": "Security tools operate from dedicated security tooling accounts separated from workloads, provisioned ahead of any incident so the team is not assembling capability under pressure.",
+          "helpfulResource": {
+            "displayText": "FND05-BP09: Establish security tooling for investigating incidents",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp09.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q09_a1",
+              "title": "This best practice is fully implemented: Establish security tooling for investigating incidents.",
               "helpfulResource": {
                 "displayText": "Security tools operate from dedicated security tooling accounts separated from workloads, provisioned ahead of any incident so the team is not assembling capability under pressure.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp09.html"
@@ -577,8 +1901,52 @@
               }
             },
             {
-              "id": "fnd05_bp10",
-              "title": "FND05-BP10: Prepare forensic capabilities",
+              "id": "fnd05_q09_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Create a dedicated security tooling account separate from general administration.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp09.html"
+              },
+              "improvementPlan": {
+                "displayText": "Create a dedicated security tooling account separate from general administration. Pre-deploy investigation tools (e.g., Amazon Detective, Security Hub, Athena queries against CloudTrail and VPC Flow Logs). Ensure the security team can access this account independently of compromised workload accounts.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp09.html"
+              }
+            },
+            {
+              "id": "fnd05_q09_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish security tooling for investigating incidents has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q09_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q09_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q10",
+          "title": "FND05-BP10: Prepare forensic capabilities",
+          "description": "A forensic account and runbooks exist ahead of any incident. The chain of custody process is documented, evidence collection is automated where possible, and the forensic path is tested before it is needed.",
+          "helpfulResource": {
+            "displayText": "FND05-BP10: Prepare forensic capabilities",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp10.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q10_a1",
+              "title": "This best practice is fully implemented: Prepare forensic capabilities.",
               "helpfulResource": {
                 "displayText": "A forensic account and runbooks exist ahead of any incident. The chain of custody process is documented, evidence collection is automated where possible, and the forensic path is tested before it is needed.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp10.html"
@@ -589,8 +1957,52 @@
               }
             },
             {
-              "id": "fnd05_bp11",
-              "title": "FND05-BP11: Establish encryption and key management standards",
+              "id": "fnd05_q10_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Establish a dedicated forensics account with automated EC2 snapshot isolation runbooks (via AWS Systems Manager Automation).",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp10.html"
+              },
+              "improvementPlan": {
+                "displayText": "Establish a dedicated forensics account with automated EC2 snapshot isolation runbooks (via AWS Systems Manager Automation). Document and test the chain of custody process. Run tabletop and live forensic exercises at least annually.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp10.html"
+              }
+            },
+            {
+              "id": "fnd05_q10_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Prepare forensic capabilities has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd05_q10_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd05_q10_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd05_q11",
+          "title": "FND05-BP11: Establish encryption and key management standards",
+          "description": "Encryption keys, secrets, and certificates are managed through central services with documented ownership, rotation, and cross-account sharing patterns that workloads consume instead of reinventing.",
+          "helpfulResource": {
+            "displayText": "FND05-BP11: Establish encryption and key management standards",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp11.html"
+          },
+          "choices": [
+            {
+              "id": "fnd05_q11_a1",
+              "title": "This best practice is fully implemented: Establish encryption and key management standards.",
               "helpfulResource": {
                 "displayText": "Encryption keys, secrets, and certificates are managed through central services with documented ownership, rotation, and cross-account sharing patterns that workloads consume instead of reinventing.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp11.html"
@@ -601,20 +2013,32 @@
               }
             },
             {
-              "id": "fnd05_no",
+              "id": "fnd05_q11_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define encryption standards (algorithms, key lengths, rotation periods) and enforce them via SCPs and AWS Config rules.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp11.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define encryption standards (algorithms, key lengths, rotation periods) and enforce them via SCPs and AWS Config rules. Use AWS KMS with multi-Region keys for replicated data. Manage certificates centrally via AWS Certificate Manager Private CA. Store secrets in AWS Secrets Manager with automatic rotation enabled.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd05-bp11.html"
+              }
+            },
+            {
+              "id": "fnd05_q11_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the security and compliance best practices are currently implemented."
+                "displayText": "Select this if Establish encryption and key management standards has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd05_bp02 && fnd05_bp03 && fnd05_bp07 && fnd05_bp08 && fnd05_bp11",
+              "condition": "fnd05_q11_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd05_bp03 && fnd05_bp07",
+              "condition": "fnd05_q11_a2",
               "risk": "MEDIUM_RISK"
             },
             {
@@ -631,16 +2055,16 @@
       "questions": [
         {
           "id": "fnd06_q01",
-          "title": "How do you track, control, and optimize cloud spend across teams and workloads?",
-          "description": "Managing cloud spend requires detailed visibility, consistent attribution, effective tooling, good commercial agreements, outcome-based metrics, and smart commitment discount strategies. Evaluate whether your foundation provides the cost management capabilities that let all teams understand and act on the spend they own.",
+          "title": "FND06-BP01: Configure detailed cost information sources",
+          "description": "AWS Cost and Usage Report (CUR) with resource-level granularity is configured and exported to a data store where teams can query it. The pipeline is set up early so historical data is available from the start of the cloud journey.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Cloud Financial Management (FND06)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06.html"
+            "displayText": "FND06-BP01: Configure detailed cost information sources",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd06_bp01",
-              "title": "FND06-BP01: Configure detailed cost information sources",
+              "id": "fnd06_q01_a1",
+              "title": "This best practice is fully implemented: Configure detailed cost information sources.",
               "helpfulResource": {
                 "displayText": "AWS Cost and Usage Report (CUR) with resource-level granularity is configured and exported to a data store where teams can query it. The pipeline is set up early so historical data is available from the start of the cloud journey.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp01.html"
@@ -651,8 +2075,52 @@
               }
             },
             {
-              "id": "fnd06_bp02",
-              "title": "FND06-BP02: Standardize cost attribution categories",
+              "id": "fnd06_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Enable the AWS Cost and Usage Report with hourly granularity and resource IDs, exported to S3 and queried via Amazon Athena or a third-party BI tool.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Enable the AWS Cost and Usage Report with hourly granularity and resource IDs, exported to S3 and queried via Amazon Athena or a third-party BI tool. Enable it at the management account level to capture consolidated usage. Ensure the export was enabled from the start; if not, document the gap in historical visibility.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp01.html"
+              }
+            },
+            {
+              "id": "fnd06_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Configure detailed cost information sources has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd06_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd06_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd06_q02",
+          "title": "FND06-BP02: Standardize cost attribution categories",
+          "description": "Cloud spend is attributed consistently to business dimensions (teams, products, environments, cost centers, applications). Cost allocation tags are both applied and activated for billing, so attribution reports are complete.",
+          "helpfulResource": {
+            "displayText": "FND06-BP02: Standardize cost attribution categories",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd06_q02_a1",
+              "title": "This best practice is fully implemented: Standardize cost attribution categories.",
               "helpfulResource": {
                 "displayText": "Cloud spend is attributed consistently to business dimensions (teams, products, environments, cost centers, applications). Cost allocation tags are both applied and activated for billing, so attribution reports are complete.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp02.html"
@@ -663,8 +2131,52 @@
               }
             },
             {
-              "id": "fnd06_bp03",
-              "title": "FND06-BP03: Configure billing and cost management tools",
+              "id": "fnd06_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define an organization-wide cost allocation tag taxonomy aligned to business dimensions.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define an organization-wide cost allocation tag taxonomy aligned to business dimensions. Activate all relevant tags in the Billing console. Enforce tagging at provisioning time via tag policies. Report on tag coverage and trend it to 100% for cost-bearing resources.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp02.html"
+              }
+            },
+            {
+              "id": "fnd06_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Standardize cost attribution categories has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd06_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd06_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd06_q03",
+          "title": "FND06-BP03: Configure billing and cost management tools",
+          "description": "Budgets, forecasts, and anomaly detection have assigned owners and response cadences so unexpected spend is caught and acted on rather than discovered in the monthly bill.",
+          "helpfulResource": {
+            "displayText": "FND06-BP03: Configure billing and cost management tools",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd06_q03_a1",
+              "title": "This best practice is fully implemented: Configure billing and cost management tools.",
               "helpfulResource": {
                 "displayText": "Budgets, forecasts, and anomaly detection have assigned owners and response cadences so unexpected spend is caught and acted on rather than discovered in the monthly bill.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp03.html"
@@ -675,8 +2187,52 @@
               }
             },
             {
-              "id": "fnd06_bp04",
-              "title": "FND06-BP04: Optimize software licensing and third-party agreements",
+              "id": "fnd06_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Configure AWS Budgets at account, service, and tag levels with alert thresholds and named owners.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Configure AWS Budgets at account, service, and tag levels with alert thresholds and named owners. Enable AWS Cost Anomaly Detection with notification subscriptions. Establish a weekly cost review cadence with workload owners. Use AWS Cost Explorer for trending and forecasting.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp03.html"
+              }
+            },
+            {
+              "id": "fnd06_q03_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Configure billing and cost management tools has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd06_q03_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd06_q03_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd06_q04",
+          "title": "FND06-BP04: Optimize software licensing and third-party agreements",
+          "description": "Commercial agreements, licensing, and commitment-based discounts are governed centrally against consolidated organization-wide usage and rebalanced as workloads evolve.",
+          "helpfulResource": {
+            "displayText": "FND06-BP04: Optimize software licensing and third-party agreements",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp04.html"
+          },
+          "choices": [
+            {
+              "id": "fnd06_q04_a1",
+              "title": "This best practice is fully implemented: Optimize software licensing and third-party agreements.",
               "helpfulResource": {
                 "displayText": "Commercial agreements, licensing, and commitment-based discounts are governed centrally against consolidated organization-wide usage and rebalanced as workloads evolve.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp04.html"
@@ -687,8 +2243,52 @@
               }
             },
             {
-              "id": "fnd06_bp05",
-              "title": "FND06-BP05: Establish organizational metrics to track optimization efforts",
+              "id": "fnd06_q04_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Centralize Bring Your Own License (BYOL) tracking using AWS License Manager.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp04.html"
+              },
+              "improvementPlan": {
+                "displayText": "Centralize Bring Your Own License (BYOL) tracking using AWS License Manager. Review third-party tool agreements annually against value delivered, especially those priced as a percentage of spend. Renegotiate agreements that do not scale linearly with value as your cloud estate grows.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp04.html"
+              }
+            },
+            {
+              "id": "fnd06_q04_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Optimize software licensing and third-party agreements has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd06_q04_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd06_q04_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd06_q05",
+          "title": "FND06-BP05: Establish organizational metrics to track optimization efforts",
+          "description": "Cost efficiency is measured against business outcomes, so optimization decisions reflect the value delivered per unit metric (e.g., cost per transaction, cost per customer) rather than raw infrastructure spend.",
+          "helpfulResource": {
+            "displayText": "FND06-BP05: Establish organizational metrics to track optimization efforts",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp05.html"
+          },
+          "choices": [
+            {
+              "id": "fnd06_q05_a1",
+              "title": "This best practice is fully implemented: Establish organizational metrics to track optimization efforts.",
               "helpfulResource": {
                 "displayText": "Cost efficiency is measured against business outcomes, so optimization decisions reflect the value delivered per unit metric (e.g., cost per transaction, cost per customer) rather than raw infrastructure spend.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp05.html"
@@ -699,8 +2299,52 @@
               }
             },
             {
-              "id": "fnd06_bp06",
-              "title": "FND06-BP06: Build strategies for commitment discounts and volume-based pricing",
+              "id": "fnd06_q05_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define unit economics metrics (cost per active user, cost per transaction, cost per GB processed) for key workloads.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp05.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define unit economics metrics (cost per active user, cost per transaction, cost per GB processed) for key workloads. Assign named owners to dashboards and establish a monthly review cadence. Track and trend unit costs over time as a signal of efficiency improvement.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp05.html"
+              }
+            },
+            {
+              "id": "fnd06_q05_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Establish organizational metrics to track optimization efforts has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd06_q05_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd06_q05_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd06_q06",
+          "title": "FND06-BP06: Build strategies for commitment discounts and volume-based pricing",
+          "description": "Savings Plans and Reserved Instances are purchased centrally against consolidated usage on well-understood, stable workloads, and are reviewed and rebalanced as the environment changes.",
+          "helpfulResource": {
+            "displayText": "FND06-BP06: Build strategies for commitment discounts and volume-based pricing",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp06.html"
+          },
+          "choices": [
+            {
+              "id": "fnd06_q06_a1",
+              "title": "This best practice is fully implemented: Build strategies for commitment discounts and volume-based pricing.",
               "helpfulResource": {
                 "displayText": "Savings Plans and Reserved Instances are purchased centrally against consolidated usage on well-understood, stable workloads, and are reviewed and rebalanced as the environment changes.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp06.html"
@@ -711,20 +2355,32 @@
               }
             },
             {
-              "id": "fnd06_no",
+              "id": "fnd06_q06_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Use AWS Cost Explorer's Savings Plans and RI recommendations, scoped to consolidated organizational usage.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp06.html"
+              },
+              "improvementPlan": {
+                "displayText": "Use AWS Cost Explorer's Savings Plans and RI recommendations, scoped to consolidated organizational usage. Establish a governance process to review commitment coverage and utilization quarterly. Avoid committing resources that are likely to be rightsized or modernized within the commitment term.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd06-bp06.html"
+              }
+            },
+            {
+              "id": "fnd06_q06_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the cloud financial management best practices are currently implemented."
+                "displayText": "Select this if Build strategies for commitment discounts and volume-based pricing has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd06_bp01 && fnd06_bp02 && fnd06_bp03 && fnd06_bp05",
+              "condition": "fnd06_q06_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd06_bp01 && fnd06_bp03",
+              "condition": "fnd06_q06_a2",
               "risk": "MEDIUM_RISK"
             },
             {
@@ -741,16 +2397,16 @@
       "questions": [
         {
           "id": "fnd07_q01",
-          "title": "How do you design, secure, and centrally manage network connectivity across the enterprise?",
-          "description": "A strong networking foundation balances centralized governance with operational efficiency. Evaluate whether your network topology, protection controls, and DNS are designed, secured, and managed centrally with workload teams consuming them through self-service patterns.",
+          "title": "FND07-BP01: Define your network and connectivity strategy and centralized resources",
+          "description": "The network is designed as a single enterprise foundation with topology, IP address allocation, and hybrid connectivity governed centrally and sized for growth. Workload teams consume network resources through self-service IaC modules rather than provisioning independently.",
           "helpfulResource": {
-            "displayText": "AWS Well-Architected Cloud Foundations – Networking and Connectivity (FND07)",
-            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07.html"
+            "displayText": "FND07-BP01: Define your network and connectivity strategy and centralized resources",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp01.html"
           },
           "choices": [
             {
-              "id": "fnd07_bp01",
-              "title": "FND07-BP01: Define your network and connectivity strategy and centralized resources",
+              "id": "fnd07_q01_a1",
+              "title": "This best practice is fully implemented: Define your network and connectivity strategy and centralized resources.",
               "helpfulResource": {
                 "displayText": "The network is designed as a single enterprise foundation with topology, IP address allocation, and hybrid connectivity governed centrally and sized for growth. Workload teams consume network resources through self-service IaC modules rather than provisioning independently.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp01.html"
@@ -761,8 +2417,52 @@
               }
             },
             {
-              "id": "fnd07_bp02",
-              "title": "FND07-BP02: Implement centralized network protection controls",
+              "id": "fnd07_q01_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Define an organization-wide IP addressing plan with reserves for new Regions, acquisitions, and hybrid partners.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp01.html"
+              },
+              "improvementPlan": {
+                "displayText": "Define an organization-wide IP addressing plan with reserves for new Regions, acquisitions, and hybrid partners. Use AWS Transit Gateway for hub-and-spoke connectivity. Share VPCs centrally using AWS Resource Access Manager. Publish IaC modules for VPC and subnet patterns to your shared catalog.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp01.html"
+              }
+            },
+            {
+              "id": "fnd07_q01_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Define your network and connectivity strategy and centralized resources has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd07_q01_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd07_q01_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd07_q02",
+          "title": "FND07-BP02: Implement centralized network protection controls",
+          "description": "Traffic flowing north-south, east-west, and to shared services passes through consistent protection and inspection controls so security posture does not depend on which team built the workload.",
+          "helpfulResource": {
+            "displayText": "FND07-BP02: Implement centralized network protection controls",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp02.html"
+          },
+          "choices": [
+            {
+              "id": "fnd07_q02_a1",
+              "title": "This best practice is fully implemented: Implement centralized network protection controls.",
               "helpfulResource": {
                 "displayText": "Traffic flowing north-south, east-west, and to shared services passes through consistent protection and inspection controls so security posture does not depend on which team built the workload.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp02.html"
@@ -773,8 +2473,52 @@
               }
             },
             {
-              "id": "fnd07_bp03",
-              "title": "FND07-BP03: Establish centralized DNS management",
+              "id": "fnd07_q02_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Deploy AWS Network Firewall or a third-party NGFW centrally in an inspection VPC attached to the Transit Gateway.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp02.html"
+              },
+              "improvementPlan": {
+                "displayText": "Deploy AWS Network Firewall or a third-party NGFW centrally in an inspection VPC attached to the Transit Gateway. Use AWS Firewall Manager to push WAF, Security Group, and Network Firewall policies organization-wide. Establish a review cadence for firewall rules to prevent allow-list accumulation.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp02.html"
+              }
+            },
+            {
+              "id": "fnd07_q02_no",
+              "title": "None of these",
+              "helpfulResource": {
+                "displayText": "Select this if Implement centralized network protection controls has not been implemented."
+              }
+            }
+          ],
+          "riskRules": [
+            {
+              "condition": "fnd07_q02_a1",
+              "risk": "NO_RISK"
+            },
+            {
+              "condition": "fnd07_q02_a2",
+              "risk": "MEDIUM_RISK"
+            },
+            {
+              "condition": "default",
+              "risk": "HIGH_RISK"
+            }
+          ]
+        },
+        {
+          "id": "fnd07_q03",
+          "title": "FND07-BP03: Establish centralized DNS management",
+          "description": "DNS is operated as a shared service with uniform resolution, filtering, and failover behavior. Hosted zones have clear ownership and DNS remains resolvable through component and Region failures.",
+          "helpfulResource": {
+            "displayText": "FND07-BP03: Establish centralized DNS management",
+            "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp03.html"
+          },
+          "choices": [
+            {
+              "id": "fnd07_q03_a1",
+              "title": "This best practice is fully implemented: Establish centralized DNS management.",
               "helpfulResource": {
                 "displayText": "DNS is operated as a shared service with uniform resolution, filtering, and failover behavior. Hosted zones have clear ownership and DNS remains resolvable through component and Region failures.",
                 "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp03.html"
@@ -785,20 +2529,32 @@
               }
             },
             {
-              "id": "fnd07_no",
+              "id": "fnd07_q03_a2",
+              "title": "This best practice is partially implemented or in progress.",
+              "helpfulResource": {
+                "displayText": "Partial implementation still exposes risk. Centralize DNS in a shared DNS account using Amazon Route 53 Resolver with inbound and outbound endpoints shared via AWS Resource Access Manager.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp03.html"
+              },
+              "improvementPlan": {
+                "displayText": "Centralize DNS in a shared DNS account using Amazon Route 53 Resolver with inbound and outbound endpoints shared via AWS Resource Access Manager. Use Route 53 Resolver DNS Firewall for filtering. Document zone ownership in tags and establish a renewal and certification management process to avoid domains lapsing to individuals.",
+                "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/fnd07-bp03.html"
+              }
+            },
+            {
+              "id": "fnd07_q03_no",
               "title": "None of these",
               "helpfulResource": {
-                "displayText": "Select this if none of the networking and connectivity best practices are currently implemented."
+                "displayText": "Select this if Establish centralized DNS management has not been implemented."
               }
             }
           ],
           "riskRules": [
             {
-              "condition": "fnd07_bp01 && fnd07_bp02 && fnd07_bp03",
+              "condition": "fnd07_q03_a1",
               "risk": "NO_RISK"
             },
             {
-              "condition": "fnd07_bp01 && fnd07_bp02",
+              "condition": "fnd07_q03_a2",
               "risk": "MEDIUM_RISK"
             },
             {
